@@ -4,9 +4,11 @@ $dark_grayish_cyan: #5e7a7d
 $grayish_cyan: #7f9c9f
 $light_grayish_cyan: #c5e4e7
 $very_light_grayish_cyan:	#f4fafa
+$medium_cyan: #9fe8df
 $white: #ffffff
 $font_size: 24px
 $font_family: 'Space Mono', monospace
+$radius_sm: 6px
 
 *
   box-sizing: border-box
@@ -44,11 +46,15 @@ body
 input
   width: 100%
   background-color: $very_light_grayish_cyan
-  border: 1px solid $very_light_grayish_cyan
+  border: 2px solid $very_light_grayish_cyan
   display: block
   text-align: right
   color: $very_dark_cyan
   padding: 0 15px
+  border-radius: $radius_sm
+
+  &:focus
+    border-color: $strong_cyan
 
 .input-icon
   display: grid
@@ -69,6 +75,7 @@ input
     grid-row: 2/3
     grid-column: 1/2
     padding-left: 17px
+    width: 50px
 
 label,
 .label
@@ -90,7 +97,8 @@ fieldset
     background-color: $white
     border-radius: 16px
     padding: 23px
-    margin-top: 11px
+    margin: 0 auto 11px
+    width: 100%
 
 .result
   &-container
@@ -110,9 +118,18 @@ fieldset
       text-transform: uppercase
       padding: 10px
       border: 0
-      border-radius: 6px
+      border-radius: $radius_sm
       margin-top: 11px
       font-size: 20px
+
+      &:hover
+        cursor: pointer
+        background-color: $medium_cyan
+
+      &:focus
+        background-color: #0d686d
+        opacity: .8
+        transition: all 1s
 
   &-amount
     display: flex
@@ -133,6 +150,7 @@ fieldset
   .description
     font-size: 14px
     display: block
+    color: $grayish_cyan
 
 .tip
   &-options
@@ -154,11 +172,16 @@ fieldset
       text-align: center
       padding: 7px 6px
       font-size: 23px
-      border-radius: 6px
+      border-radius: $radius_sm
 
     input
       width: 100%
       height: 100%
+      border-radius: $radius_sm
+      text-align: right
+
+      &::placeholder
+        text-align: center
 
     input[type=radio]
       display: none
@@ -167,6 +190,12 @@ fieldset
         + label
           background: $strong_cyan
           color: $white
+
+      &:hover
+        + label
+          background: $medium_cyan
+          color: $very_dark_cyan
+          transition: all .5s
 
     &.active
       label
@@ -183,3 +212,97 @@ fieldset
 
 .calculator
   padding: 0 10px 7px
+
+@media screen and ( min-width:  998px)
+  body
+    padding: 0
+    grid-template-rows: auto
+    gap: 0
+
+  .main
+    &-content
+      max-width: 924px
+      display: grid
+      grid-template-columns: 1fr 1fr
+      gap: 24px
+      padding: 32px
+      margin-top: 13px
+      border-radius: 22px
+
+    &-header
+      align-self: self-end
+      padding-top: 9px
+
+  .tip
+    &-options
+      grid-template-columns: repeat(3, minmax(116px, auto))
+      padding: 0 12px 2px 7px
+      gap: 16px
+
+    &-input
+      input
+        font-size: 23px
+        padding: 0 10px
+
+      label
+        padding: 7px 10px
+
+  label,
+  .label
+    padding-left: 6px
+    padding-top: 9px
+
+  .input-icon
+    padding-right: 10px
+    padding-left: 8px
+    gap: 0
+
+    &:last-of-type
+      margin-bottom: 0
+
+    &:not(:last-of-type)
+      margin-bottom: 30px
+    
+    label
+      margin-bottom: 5px
+      padding-left: 0
+
+    input
+      padding: 0 19px
+      height: 44px
+
+    .icon
+      padding-left: 16px
+
+      img
+        margin-top: 14px
+        display: block
+
+  .result
+    &-container
+      display: grid
+      grid-template-columns: 1fr
+      grid-template-rows: repeat(4, 1fr)
+      gap: 0
+      padding: 32px 44px 24px
+      height: 413px
+
+      button
+        grid-row: 4/5
+        height: 48px
+        padding: 0 6px
+        margin-top: 28px
+
+    &-amount
+      &:first-of-type
+        grid-row: 1/2
+
+      &:last-of-type
+        grid-row: 2/3
+
+        .detail
+          padding-top: 14px
+
+      .quantity
+        font-size: 46px
+        line-height: 57px
