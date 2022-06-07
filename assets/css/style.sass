@@ -1,0 +1,185 @@
+$strong_cyan: #26c0ab
+$very_dark_cyan: #00494d
+$dark_grayish_cyan: #5e7a7d
+$grayish_cyan: #7f9c9f
+$light_grayish_cyan: #c5e4e7
+$very_light_grayish_cyan:	#f4fafa
+$white: #ffffff
+$font_size: 24px
+$font_family: 'Space Mono', monospace
+
+*
+  box-sizing: border-box
+  padding: 0
+  margin: 0
+  outline: 0
+
+  &::after, &::before
+    box-sizing: border-box
+    padding: 0
+    margin: 0
+    outline: 0
+
+html,
+body
+  height: 100%
+  background-color: $light_grayish_cyan
+
+body,
+input,
+button
+  font-family: $font_family
+  font-size: $font_size
+  color: $dark_grayish_cyan
+
+body
+  display: grid
+  grid-template-columns: 1fr
+  grid-template-rows: auto 1fr
+  gap: 30px
+  justify-content: center
+  align-items: center
+  padding: 52px 0
+
+input
+  width: 100%
+  background-color: $very_light_grayish_cyan
+  border: 1px solid $very_light_grayish_cyan
+  display: block
+  text-align: right
+  color: $very_dark_cyan
+  padding: 0 15px
+
+.input-icon
+  display: grid
+  grid-template-rows: repeat(2, 1fr)
+  grid-template-columns: 1fr
+  gap: 5px
+  margin-bottom: 29px
+
+  label
+    grid-column: 1/2
+    grid-row: 1/2
+
+  input
+    grid-column: 1/2
+    grid-row: 2/3
+
+  .icon
+    grid-row: 2/3
+    grid-column: 1/2
+    padding-left: 17px
+
+label,
+.label
+  font-size: 16px
+  padding-top: 9px
+
+fieldset
+  border: none
+  margin-bottom: 20px
+
+.main
+  &-header
+    .logo
+      img
+        display: block
+        margin:  0 auto
+
+  &-content
+    background-color: $white
+    border-radius: 16px
+    padding: 23px
+    margin-top: 11px
+
+.result
+  &-container
+    padding: 40px 23px 24px
+    background-color: $very_dark_cyan
+    border-radius: 16px
+
+    display: flex
+    flex-direction: column
+    gap: 22px
+
+    button
+      display: block
+      width: 100%
+      background-color: $strong_cyan
+      color: $very_dark_cyan
+      text-transform: uppercase
+      padding: 10px
+      border: 0
+      border-radius: 6px
+      margin-top: 11px
+      font-size: 20px
+
+  &-amount
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    .quantity
+      color: $strong_cyan
+      font-size: 30px
+      line-height: 40px
+
+.detail
+  .title
+    font-size: 16px
+    display: block
+    color: $white
+
+  .description
+    font-size: 14px
+    display: block
+
+.tip
+  &-options
+    display: grid
+    grid-template-columns: repeat(2, minmax(147px, auto))
+    gap: 15px
+    margin-top: 16px
+
+  &-input
+    position: relative
+
+    label
+      display: block
+      width: 100%
+      height: 100%
+      cursor: pointer
+      background-color: $very_dark_cyan
+      color: $white
+      text-align: center
+      padding: 7px 6px
+      font-size: 23px
+      border-radius: 6px
+
+    input
+      width: 100%
+      height: 100%
+
+    input[type=radio]
+      display: none
+
+      &:checked
+        + label
+          background: $strong_cyan
+          color: $white
+
+    &.active
+      label
+        background-color: $strong_cyan
+        color: $very_dark_cyan
+
+    &.custom
+      label
+        background-color: $very_light_grayish_cyan
+        color: $dark_grayish_cyan
+    
+.number-people-container
+  padding-top: 6px
+
+.calculator
+  padding: 0 10px 7px
