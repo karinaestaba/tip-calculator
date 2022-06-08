@@ -10,86 +10,88 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header class="main-header">
-    <figure class="logo">
-      <img src="assets/images/logo.svg" alt="60">
-    </figure>
-  </header>
-  <main class="main-content">
-    <form action="/#" class="calculator" id="tipsForm">
-      <div class="bill-input-container input-icon">
-        <input type="number" id="billInput" placeholder="0" min="1" pattern="[0-9]+" required>
-        <div class="icon">
-          <img src="assets/images/icon-dollar.svg" width="11">
-        </div>
-        <label for="billInput">Bill</label>
-      </div>
-
-      <h1 class="label">Select Tip %</h1>
-      <fieldset class="tip-options">
-        <div class="tip-input">
-          <input type="radio" name="tipOption" id="tipOption5" value="5">
-          <label for="tipOption5">5%</label>
+  <div class="content-box">
+    <header class="main-header">
+      <figure class="logo">
+        <img src="assets/images/logo.svg" alt="60">
+      </figure>
+    </header>
+    <main class="main-content">
+      <form action="/#" class="calculator" id="tipsForm">
+        <div class="bill-input-container input-icon">
+          <input type="number" id="billInput" placeholder="0" min="1" pattern="[0-9]+" required>
+          <div class="icon">
+            <img src="assets/images/icon-dollar.svg" width="11">
+          </div>
+          <label for="billInput">Bill</label>
         </div>
 
-        <div class="tip-input">
-          <input type="radio" name="tipOption" id="tipOption10" value="10">
-          <label for="tipOption10">10%</label>
+        <h1 class="label">Select Tip %</h1>
+        <fieldset class="tip-options">
+          <div class="tip-input">
+            <input type="radio" name="tipOption" id="tipOption5" value="5">
+            <label for="tipOption5">5%</label>
+          </div>
+
+          <div class="tip-input">
+            <input type="radio" name="tipOption" id="tipOption10" value="10">
+            <label for="tipOption10">10%</label>
+          </div>
+
+          <div class="tip-input">
+            <input type="radio" name="tipOption" id="tipOption15" value="15">
+            <label for="tipOption15">15%</label>
+          </div>
+
+          <div class="tip-input">
+            <input type="radio" name="tipOption" id="tipOption25" value="25">
+            <label for="tipOption25">25%</label>
+          </div>
+
+          <div class="tip-input">
+            <input type="radio" name="tipOption" id="tipOption50" value="50">
+            <label for="tipOption50">50%</label>
+          </div>
+
+          <div class="tip-input">
+            <input type="number" id="customTipInput" placeholder="Custom" min="1" max="90">
+          </div>
+        </fieldset>
+
+        <div class="number-people-container input-icon">
+          <input type="number" id="numberPeopleInput" classs="number-people-input" placeholder="0" min="1" pattern="[0-9]+" required>
+          <div class="icon">
+            <img src="assets/images/icon-person.svg" width="13">
+          </div>
+          <label for="numberPeopleInput">Number of People</label>
+        </div>
+      </form>
+
+      <section class="result-container">
+        <div class="result-amount">
+          <div class="detail">
+            <span class="title">Tip Amount</span>
+            <span class="description">/ person</span>
+          </div>
+          <div class="quantity" id="totalTipPerson">
+            $0.00
+          </div>
         </div>
 
-        <div class="tip-input">
-          <input type="radio" name="tipOption" id="tipOption15" value="15">
-          <label for="tipOption15">15%</label>
+        <div class="result-amount">
+          <div class="detail">
+            <span class="title">Total</span>
+            <span class="description">/ person</span>
+          </div>
+          <div class="quantity" id="totalBillPerson">
+            $0.00
+          </div>
         </div>
 
-        <div class="tip-input">
-          <input type="radio" name="tipOption" id="tipOption25" value="25">
-          <label for="tipOption25">25%</label>
-        </div>
-
-        <div class="tip-input">
-          <input type="radio" name="tipOption" id="tipOption50" value="50">
-          <label for="tipOption50">50%</label>
-        </div>
-
-        <div class="tip-input">
-          <input type="number" id="customTipInput" placeholder="Custom" min="1" max="90">
-        </div>
-      </fieldset>
-
-      <div class="number-people-container input-icon">
-        <input type="number" id="numberPeopleInput" classs="number-people-input" placeholder="0" min="1" pattern="[0-9]+" required>
-        <div class="icon">
-          <img src="assets/images/icon-person.svg" width="13">
-        </div>
-        <label for="numberPeopleInput">Number of People</label>
-      </div>
-    </form>
-
-    <section class="result-container">
-      <div class="result-amount">
-        <div class="detail">
-          <span class="title">Tip Amount</span>
-          <span class="description">/ person</span>
-        </div>
-        <div class="quantity" id="totalTipPerson">
-          $0.00
-        </div>
-      </div>
-
-      <div class="result-amount">
-        <div class="detail">
-          <span class="title">Total</span>
-          <span class="description">/ person</span>
-        </div>
-        <div class="quantity" id="totalBillPerson">
-          $0.00
-        </div>
-      </div>
-
-      <button type="reset" id="resetButton" form="tipsForm" title="Clear values" disabled>Reset</button>
-    </section>
-  </main>
+        <button type="reset" id="resetButton" form="tipsForm" title="Clear values" disabled>Reset</button>
+      </section>
+    </main>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>
