@@ -57,8 +57,13 @@ function refreshResult(){
       tipAmount = calculateTipAmount(bill, tipCustomAmount)
     } 
 
-    document.getElementById('totalTipPerson').innerHTML = parseCurrency(calculateTipAmountByPerson(tipAmount, numberOfPeople))
-    document.getElementById('totalBillPerson').innerHTML =  parseCurrency(calculateTotalBillByPerson(bill + tipAmount, numberOfPeople))
+    const totalTipPerson = parseCurrency(calculateTipAmountByPerson(tipAmount, numberOfPeople))
+    const totalBillPerson = parseCurrency(calculateTotalBillByPerson(bill + tipAmount, numberOfPeople))
+
+    checkFontSize(totalTipPerson, totalBillPerson)
+
+    document.getElementById('totalTipPerson').innerHTML = totalTipPerson
+    document.getElementById('totalBillPerson').innerHTML =  totalBillPerson
   }
 }
 
@@ -80,6 +85,20 @@ function refreshAlerts(){
   }
   else{
     refreshResult()
+  }
+}
+
+function checkFontSize(totalBillPerson, totalTipPerson){
+  const resultContainer = document.getElementById('resultContainer')
+
+  if(String(totalBillPerson).length > 10 || String(totalTipPerson).length > 10){
+    resultContainer.classList.add('xs-text')
+  }
+  else if(String(totalBillPerson).length > 6 || String(totalTipPerson).length > 6){
+    resultContainer.classList.add('sm-text')
+  }
+  else{
+    resultContainer.classList.remove('sm-text', 'xs-text')
   }
 }
 
