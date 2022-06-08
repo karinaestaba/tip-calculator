@@ -71,13 +71,9 @@ input
   grid-template-columns: 1fr
   gap: 5px
   margin-bottom: 29px
+  position: relative
 
   label
-    grid-column: 1/2
-    grid-row: 1/2
-
-  .error
-    display: none
     grid-column: 1/2
     grid-row: 1/2
 
@@ -136,14 +132,18 @@ fieldset
       margin-top: 11px
       font-size: 20px
 
-      &:hover
-        cursor: pointer
-        background-color: $medium_cyan
+      &:not(:disabled)
+        &:hover
+          cursor: pointer
+          background-color: $medium_cyan
 
-      &:focus
-        background-color: #0d686d
-        opacity: .8
-        transition: all 1s
+        &:focus
+          background-color: #0d686d
+          opacity: .8
+          transition: all 1s
+
+      &:disabled
+        opacity: .4
 
   &-amount
     display: grid
@@ -237,13 +237,14 @@ form
       &:invalid
         border-color: $red
 
-        ~ .error
-          font-size: 16px
-          text-align: right
-          align-self: center
-          display: block
-          padding-right: 2px
-          color: $red
+        ~ label
+          &::after
+            content: "Can't be zero"
+            display: inline-block
+            font-size: 16px
+            color: #c87764
+            right: 10px
+            position: absolute
 
 @media screen and ( min-width:  998px)
   body

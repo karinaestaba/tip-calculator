@@ -10,30 +10,43 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   document.querySelectorAll('input[name=tipOption]').forEach(input => {
-    input.addEventListener('change', () => {
-      document.getElementById('customTipInput').value = ""
-      refreshResult()
+    input.addEventListener('change', (event) => {
+      if(event.target.checked){
+        document.getElementById('customTipInput').value = ""
+        refreshAlerts()
+      }
     })
   })
 
   document.getElementById('billInput').addEventListener('keyup', refreshResult)
   document.getElementById('numberPeopleInput').addEventListener('keyup', refreshResult)
-  document.getElementById('customTipInput').addEventListener('keyup', refreshResult)
-  document.getElementById('resetButton').addEventListener('click', resetForm)
+
+  document.getElementById('customTipInput').addEventListener('keyup', refreshAlerts)
+  document.getElementById('resetButton').addEventListener('click', () => {
+    resetResults()
+    document.getElementById('tipsForm').classList.remove('invalid')
+  })
 })
 
 // -- Interfaz --
 
 function refreshResult(){
   const form = document.getElementById('tipsForm')  
+  const resetButton = document.getElementById('resetButton')
   const bill = parseValueToNumber('billInput', 'id', 'float')
   const numberOfPeople = parseValueToNumber('numberPeopleInput', 'id')
 
-  if(numberOfPeople < 1 || bill < 1){
+  if(numberOfPeople < 1 && bill < 1) {
+    resetResults(true)
+  }
+  else if(numberOfPeople < 1 || bill < 1){
     form.classList.add('invalid')
-    resetForm()
-  }else{
-    form.classList.remove('invalid') 
+    resetButton.removeAttribute('disabled')
+    resetResults()
+  }
+  else{
+    form.classList.remove('invalid')
+    resetButton.removeAttribute('disabled')
 
     let tipAmount = calculateTipAmount(bill, parseValueToNumber('input[type=radio][name=tipOption]:checked', 'query', 'float'))
     
@@ -44,17 +57,30 @@ function refreshResult(){
       tipAmount = calculateTipAmount(bill, tipCustomAmount)
     } 
 
-    const totalTipByPerson = calculateTipAmountByPerson(tipAmount, numberOfPeople)
-    const totalBillByPerson = calculateTotalBillByPerson(bill + tipAmount, numberOfPeople)
-
-    document.getElementById('totalTipPerson').innerHTML = parseCurrency(totalTipByPerson)
-    document.getElementById('totalBillPerson').innerHTML =  parseCurrency(totalBillByPerson)
+    document.getElementById('totalTipPerson').innerHTML = parseCurrency(calculateTipAmountByPerson(tipAmount, numberOfPeople))
+    document.getElementById('totalBillPerson').innerHTML =  parseCurrency(calculateTotalBillByPerson(bill + tipAmount, numberOfPeople))
   }
 }
 
-function resetForm(){
+function resetResults(disableReset = false){
   document.getElementById('totalTipPerson').innerHTML = parseCurrency(0)
   document.getElementById('totalBillPerson').innerHTML = parseCurrency(0)
+  
+  if (disableReset){
+    document.getElementById('resetButton').setAttribute('disabled', '')
+  }
+}
+
+function refreshAlerts(){
+  if (parseValueToNumber('numberPeopleInput', 'id') < 1 && parseValueToNumber('billInput', 'id', 'float') < 1){
+    document.getElementById('tipsForm') .classList.add('invalid')
+    document.getElementById('resetButton').setAttribute('disabled', '')
+
+    resetResults()
+  }
+  else{
+    refreshResult()
+  }
 }
 
 // --- Cálculos ---
@@ -67,7 +93,7 @@ function calculateTipAmountByPerson(tipAmount, numberOfPeople){
   if(numberOfPeople < 1){
     numberOfPeople = 1
   }
-  return (tipAmount < 1 ) ? 0 : tipAmount / numberOfPeople
+  return (tipAmount < 0 ) ? 0 : tipAmount / numberOfPeople
 }
 
 function calculateTotalBillByPerson(totalAmount, numberOfPeople){
@@ -75,7 +101,7 @@ function calculateTotalBillByPerson(totalAmount, numberOfPeople){
     numberOfPeople = 1
   }
 
-  return (totalAmount < 1) ? totalAmount : totalAmount / numberOfPeople
+  return (totalAmount < 0) ? totalAmount : totalAmount / numberOfPeople
 }
 
 // --- Filtros ---

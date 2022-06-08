@@ -18,12 +18,11 @@
   <main class="main-content">
     <form action="/#" class="calculator" id="tipsForm">
       <div class="bill-input-container input-icon">
-        <input type="number" id="billInput" placeholder="0" value="0" min="1" pattern="[0-9]+">
+        <input type="number" id="billInput" placeholder="0" min="1" pattern="[0-9]+" required>
         <div class="icon">
           <img src="assets/images/icon-dollar.svg" width="11">
         </div>
         <label for="billInput">Bill</label>
-        <span class="error">Can't be zero</span>
       </div>
 
       <h1 class="label">Select Tip %</h1>
@@ -34,7 +33,7 @@
         </div>
 
         <div class="tip-input">
-          <input type="radio" name="tipOption" id="tipOption10" value="10" checked>
+          <input type="radio" name="tipOption" id="tipOption10" value="10">
           <label for="tipOption10">10%</label>
         </div>
 
@@ -59,13 +58,11 @@
       </fieldset>
 
       <div class="number-people-container input-icon">
-        
-        <label for="numberPeopleInput">Number of People</label>
-        <input type="number" id="numberPeopleInput" classs="number-people-input" placeholder="0" value="0" min="1" pattern="[0-9]+">
+        <input type="number" id="numberPeopleInput" classs="number-people-input" placeholder="0" min="1" pattern="[0-9]+" required>
         <div class="icon">
           <img src="assets/images/icon-person.svg" width="13">
         </div>
-        <span class="error">Can't be zero</span>
+        <label for="numberPeopleInput">Number of People</label>
       </div>
     </form>
 
@@ -90,7 +87,7 @@
         </div>
       </div>
 
-      <button type="reset" id="resetButton" form="tipsForm" title="Clear values">Reset</button>
+      <button type="reset" id="resetButton" form="tipsForm" title="Clear values" disabled>Reset</button>
     </section>
   </main>
 
