@@ -19,9 +19,9 @@
     <main class="main-content">
       <form action="/#" class="calculator" id="tipsForm">
         <div class="bill-input-container input-icon">
-          <input type="number" id="billInput" placeholder="0" min="1" pattern="[0-9]+" required>
+          <input type="number" id="billInput" placeholder="0" min="1" required>
           <div class="icon">
-            <img src="assets/images/icon-dollar.svg" width="11">
+            <img src="assets/images/icon-dollar.svg" width="11" alt="icon">
           </div>
           <label for="billInput">Bill</label>
         </div>
@@ -59,15 +59,15 @@
         </fieldset>
 
         <div class="number-people-container input-icon">
-          <input type="number" id="numberPeopleInput" classs="number-people-input" placeholder="0" min="1" pattern="[0-9]+" required>
+          <input type="number" id="numberPeopleInput" class="number-people-input" placeholder="0" min="1" required>
           <div class="icon">
-            <img src="assets/images/icon-person.svg" width="13">
+            <img src="assets/images/icon-person.svg" width="13" alt="icon">
           </div>
           <label for="numberPeopleInput">Number of People</label>
         </div>
       </form>
 
-      <section class="result-container" id="resultContainer">
+      <div class="result-container" id="resultContainer">
         <div class="result-amount">
           <div class="detail">
             <span class="title">Tip Amount</span>
@@ -89,7 +89,7 @@
         </div>
 
         <button type="reset" id="resetButton" form="tipsForm" title="Clear values" disabled>Reset</button>
-      </section>
+      </div>
     </main>
   </div>
 
