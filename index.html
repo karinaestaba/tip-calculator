@@ -16,53 +16,56 @@
     </figure>
   </header>
   <main class="main-content">
-    <form action="/#" class="calculator">
+    <form action="/#" class="calculator" id="tipsForm">
       <div class="bill-input-container input-icon">
-        <label for="billInput">Bill</label>
-        <input type="text" id="billInput" placeholder="0" value="0">
+        <input type="number" id="billInput" placeholder="0" value="0" min="1" pattern="[0-9]+">
         <div class="icon">
           <img src="assets/images/icon-dollar.svg" width="11">
         </div>
+        <label for="billInput">Bill</label>
+        <span class="error">Can't be zero</span>
       </div>
 
       <h1 class="label">Select Tip %</h1>
       <fieldset class="tip-options">
         <div class="tip-input">
-          <input type="radio" name="tipAmount" id="tipAmount5" value="5">
-          <label for="tipAmount5">5%</label>
+          <input type="radio" name="tipOption" id="tipOption5" value="5">
+          <label for="tipOption5">5%</label>
         </div>
 
         <div class="tip-input">
-          <input type="radio" name="tipAmount" id="tipAmount10" value="10">
-          <label for="tipAmount10">10%</label>
+          <input type="radio" name="tipOption" id="tipOption10" value="10" checked>
+          <label for="tipOption10">10%</label>
         </div>
 
         <div class="tip-input">
-          <input type="radio" name="tipAmount" id="tipAmount15" value="15">
-          <label for="tipAmount15">15%</label>
+          <input type="radio" name="tipOption" id="tipOption15" value="15">
+          <label for="tipOption15">15%</label>
         </div>
 
         <div class="tip-input">
-          <input type="radio" name="tipAmount" id="tipAmount25" value="25">
-          <label for="tipAmount25">25%</label>
+          <input type="radio" name="tipOption" id="tipOption25" value="25">
+          <label for="tipOption25">25%</label>
         </div>
 
         <div class="tip-input">
-          <input type="radio" name="tipAmount" id="tipAmount50" value="50">
-          <label for="tipAmount50">50%</label>
+          <input type="radio" name="tipOption" id="tipOption50" value="50">
+          <label for="tipOption50">50%</label>
         </div>
 
         <div class="tip-input">
-          <input type="text" id="customTipInput" placeholder="Custom">
+          <input type="number" id="customTipInput" placeholder="Custom" min="1" max="90">
         </div>
       </fieldset>
 
       <div class="number-people-container input-icon">
+        
         <label for="numberPeopleInput">Number of People</label>
-        <input type="text" id="numberPeopleInput" classs="number-people-input" placeholder="0" value="0">
+        <input type="number" id="numberPeopleInput" classs="number-people-input" placeholder="0" value="0" min="1" pattern="[0-9]+">
         <div class="icon">
           <img src="assets/images/icon-person.svg" width="13">
         </div>
+        <span class="error">Can't be zero</span>
       </div>
     </form>
 
@@ -72,7 +75,7 @@
           <span class="title">Tip Amount</span>
           <span class="description">/ person</span>
         </div>
-        <div class="quantity">
+        <div class="quantity" id="totalTipPerson">
           $0.00
         </div>
       </div>
@@ -82,12 +85,12 @@
           <span class="title">Total</span>
           <span class="description">/ person</span>
         </div>
-        <div class="quantity">
+        <div class="quantity" id="totalBillPerson">
           $0.00
         </div>
       </div>
 
-      <button type="button" id="resetButton">Reset</button>
+      <button type="reset" id="resetButton" form="tipsForm" title="Clear values">Reset</button>
     </section>
   </main>
 
